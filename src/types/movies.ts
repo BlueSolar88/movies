@@ -9,8 +9,11 @@ export interface Movie {
   poster_path: string | null;
   title: string;
   video: boolean;
-  ratings: {
-    id: string;
-    rating: number;
-  }[];
+  ratings: Rating[];
+  release_date?: string;
+}
+
+export interface Rating {
+  id: string;
+  rating: number;
 }

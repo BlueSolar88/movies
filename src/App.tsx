@@ -1,12 +1,13 @@
-import React from "react";
-import "./App.css";
 import MoviesCarousel from "./MoviesCarousel/MoviesCarousel";
+
+import GlobalStyle from "./App.styles";
 
 function App() {
   return (
-    <div className="App">
+    <>
+      <GlobalStyle />
       <MoviesCarousel />
-    </div>
+    </>
   );
 }
 
