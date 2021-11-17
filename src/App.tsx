@@ -1,4 +1,4 @@
-import MoviesCarousel from "./MoviesCarousel/MoviesCarousel";
+import MovieCardContainer from "./MovieCardContainer/MovieCardContainer";
 
 import GlobalStyle from "./App.styles";
 
@@ -6,7 +6,7 @@ function App() {
   return (
     <>
       <GlobalStyle />
-      <MoviesCarousel />
+      <MovieCardContainer />
     </>
   );
 }
