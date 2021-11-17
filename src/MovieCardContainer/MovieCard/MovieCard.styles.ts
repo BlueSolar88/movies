@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const MovieCardStyled = styled.div`
   width: 250px;
-  border: 1px solid #ccc;
+  outline: 1px solid #0198fa;
+  border: 3px solid transparent;
   border-radius: 6px;
   display: flex;
   flex-direction: column;
@@ -10,7 +11,8 @@ export const MovieCardStyled = styled.div`
   margin-bottom: 25px;
 
   &.active {
-    border: solid 3px #ccc;
+    outline: 0px solid transparent;
+    border: 3px solid #0198fa;
   }
 `;
 
