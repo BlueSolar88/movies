@@ -21,4 +21,8 @@ export const TitleSection = styled.span`
 
 export const DetailsSection = styled.div`
   margin-top: 5px;
+  height: 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;

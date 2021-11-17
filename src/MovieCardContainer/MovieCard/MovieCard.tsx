@@ -6,9 +6,10 @@ type MovieCardProps = {
   movie: Movie;
   id: string;
   active?: boolean;
+  favourite?: boolean;
 };
 
-export default function MovieCard({ movie, id, active = false }: MovieCardProps) {
+export default function MovieCard({ movie, id, active = false, favourite = false }: MovieCardProps) {
   const { title, poster_path, release_date } = movie;
   let displayReleaseDate = release_date ? release_date : "-";
   return (
@@ -16,7 +17,10 @@ export default function MovieCard({ movie, id, active = false }: MovieCardProps)
       <TitleSection>{title}</TitleSection>
       {poster_path && <img src={getPosterUrl(poster_path)} alt={title} />}
       <DetailsSection>
-        <span>Release date: {displayReleaseDate}</span>
+        <div>
+          <span>Release date: {displayReleaseDate}</span>
+        </div>
+        {favourite && <span>Added to favourites</span>}
       </DetailsSection>
     </MovieCardStyled>
   );
