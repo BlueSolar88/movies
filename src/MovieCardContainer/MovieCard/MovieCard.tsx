@@ -20,7 +20,7 @@ export default function MovieCard({ movie, id, active = false, favourite = false
         <div>
           <span>Release date: {displayReleaseDate}</span>
         </div>
-        {favourite && <span>Added to favourites</span>}
+        <span>Added to favourites: {favourite ? "Yes" : "No"}</span>
       </DetailsSection>
     </MovieCardStyled>
   );

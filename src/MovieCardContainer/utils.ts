@@ -8,10 +8,10 @@ export function sortData(movies: Movie[]) {
   return movies.sort(function (a, b) {
     var valueA = getRating(a.ratings);
     var valueB = getRating(b.ratings);
-    if (valueA && valueB && valueA < valueB) {
-      return -1;
-    } else if (valueA && valueB && valueA > valueB) {
+    if (valueA < valueB) {
       return 1;
+    } else if (valueA > valueB) {
+      return -1;
     } else {
       return 0;
     }
@@ -27,5 +27,5 @@ export function getPosterUrl(poster: string): string {
 
 export function getRating(ratings: Rating[]) {
   const imdbRating = ratings.find((rating) => rating.id === "imdb");
-  return imdbRating?.rating;
+  return imdbRating?.rating || 0;
 }

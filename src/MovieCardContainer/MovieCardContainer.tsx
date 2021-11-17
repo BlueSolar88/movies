@@ -13,6 +13,7 @@ export default function MoviesCarousel() {
 
   const filteredData = filterDuplicates(data);
   const sortedData = sortData(filteredData);
+  console.log("sortedData", sortedData);
   const numberOfColumns = 4;
   const numberOfRows = Math.ceil(sortedData.length / numberOfColumns);
 
