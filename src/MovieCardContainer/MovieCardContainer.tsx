@@ -13,11 +13,14 @@ export default function MoviesCarousel() {
 
   const filteredData = filterDuplicates(data);
   const sortedData = sortData(filteredData);
-  console.log("sortedData", sortedData);
+
   const numberOfColumns = 4;
   const numberOfRows = Math.ceil(sortedData.length / numberOfColumns);
 
   document.onkeydown = checkKey;
+
+  const newLocal = document.getElementById(focusedElement.toString());
+  newLocal && newLocal.scrollIntoView({ behavior: "smooth" });
 
   function checkKey(e: any) {
     e = e || window.event;
