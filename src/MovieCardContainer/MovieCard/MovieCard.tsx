@@ -11,14 +11,13 @@ type MovieCardProps = {
 
 export default function MovieCard({ movie, id, active = false, favourite = false }: MovieCardProps) {
   const { title, poster_path, release_date } = movie;
-  let displayReleaseDate = release_date ? release_date : "-";
   return (
     <MovieCardStyled id={id} className={active ? "active" : ""}>
       <TitleSection>{title}</TitleSection>
       {poster_path && <img src={getPosterUrl(poster_path)} alt={title} />}
       <DetailsSection>
         <div>
-          <span>Release date: {displayReleaseDate}</span>
+          <span>Release date: {release_date ? release_date : "-"}</span>
         </div>
         <span>Added to favourites: {favourite ? "Yes" : "No"}</span>
       </DetailsSection>

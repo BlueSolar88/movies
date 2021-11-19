@@ -9,7 +9,7 @@ import { Movie } from "../types/movies";
 
 export default function MoviesCarousel() {
   const [focusedElement, setFocusedElement] = useState(0);
-  const [favourites, setFavourites] = useState([] as number[]);
+  const [favourites, setFavourites] = useState<number[]>([]);
 
   const filteredData = filterDuplicates(data);
   const sortedData = sortData(filteredData);
@@ -22,38 +22,48 @@ export default function MoviesCarousel() {
   const newLocal = document.getElementById(focusedElement.toString());
   newLocal && newLocal.scrollIntoView({ behavior: "smooth" });
 
-  function checkKey(e: any) {
+  function checkKey(e: KeyboardEvent) {
     e = e || window.event;
     e.preventDefault();
 
-    if (e.keyCode === 38) {
-      // up arrow
-      const nextPosition = focusedElement - 4;
-      if (nextPosition >= 0) {
-        setFocusedElement(nextPosition);
-      }
-    } else if (e.keyCode === 40) {
-      // down arrow
-      const nextPosition = focusedElement + 4;
-      if (nextPosition <= numberOfRows) {
-        setFocusedElement(nextPosition);
-      }
-    } else if (e.keyCode === 37) {
-      // left arrow
-      const nextPosition = focusedElement - 1;
-      const positionInRow = focusedElement % 4;
-      if (positionInRow > 0) {
-        setFocusedElement(nextPosition);
-      }
-    } else if (e.keyCode === 39) {
-      // right arrow
-      const nextPosition = focusedElement + 1;
-      const positionInRow = focusedElement % 4;
-      if (positionInRow < 3) {
-        setFocusedElement(nextPosition);
-      }
-    } else if (e.keyCode === 13) {
-      toggleFavourite(sortedData[focusedElement]);
+    let nextPosition;
+    let positionInRow;
+    switch (e.key) {
+      case "Up":
+      case "ArrowUp":
+        nextPosition = focusedElement - numberOfColumns;
+        if (nextPosition >= 0) {
+          setFocusedElement(nextPosition);
+        }
+        break;
+      case "Down":
+      case "ArrowDown":
+        nextPosition = focusedElement + numberOfColumns;
+        if (nextPosition <= numberOfRows) {
+          setFocusedElement(nextPosition);
+        }
+        break;
+      case "Left":
+      case "ArrowLeft":
+        nextPosition = focusedElement - 1;
+        positionInRow = focusedElement % numberOfColumns;
+        if (positionInRow > 0) {
+          setFocusedElement(nextPosition);
+        }
+        break;
+      case "Right":
+      case "ArrowRight":
+        nextPosition = focusedElement + 1;
+        positionInRow = focusedElement % numberOfColumns;
+        if (positionInRow < 3) {
+          setFocusedElement(nextPosition);
+        }
+        break;
+      case "Enter":
+        toggleFavourite(sortedData[focusedElement]);
+        break;
+      default:
+        return;
     }
   }
 
@@ -61,7 +71,7 @@ export default function MoviesCarousel() {
     let index = favourites.indexOf(id);
     if (index !== -1) {
       setFavourites((prevState) => {
-        return prevState.splice(index, 1);
+        return prevState.filter((favourite) => favourite !== id);
       });
     } else {
       setFavourites((prevState) => {

@@ -6,11 +6,11 @@ export function filterDuplicates(movies: Movie[]): Movie[] {
 
 export function sortData(movies: Movie[]) {
   return movies.sort(function (a, b) {
-    var valueA = getRating(a.ratings);
-    var valueB = getRating(b.ratings);
-    if (valueA < valueB) {
+    const rating1 = getRating(a.ratings);
+    const rating2 = getRating(b.ratings);
+    if (rating1 < rating2) {
       return 1;
-    } else if (valueA > valueB) {
+    } else if (rating1 > rating2) {
       return -1;
     } else {
       return 0;
